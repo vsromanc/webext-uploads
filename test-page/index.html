@@ -1,0 +1,45 @@
+<!-- test-page/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload Test Page</title>
+</head>
+<body>
+  <h1>File Upload Test Page</h1>
+
+  <!-- Standard file input -->
+  <input type="file" id="fileInput"><br><br>
+
+  <!-- Button to create a dynamic input element -->
+  <button id="createInputButton">Create Dynamic Input</button><br><br>
+
+  <!-- Drop zone for drag-and-drop uploads -->
+  <div id="dropZone" style="width: 200px; height: 100px; border: 1px dashed #000;">
+    Drop files here
+  </div>
+
+  <script>
+    // Create a dynamic input element when the button is clicked
+    document.getElementById('createInputButton').addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.onchange = function () {
+        console.log('Dynamic input files:', input.files);
+      };
+      input.click();
+    });
+
+    // Handle drag-and-drop files
+    const dropZone = document.getElementById('dropZone');
+    dropZone.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    });
+    dropZone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      console.log('Files dropped:', event.dataTransfer.files);
+    });
+  </script>
+</body>
+</html>
